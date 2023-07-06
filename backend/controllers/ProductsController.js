@@ -30,11 +30,11 @@ export const createProduct = async (req, res) => {
     const ext = path.extname(file.name);
     const fileName = file.md5 + ext;
     const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
-    const allowedType = ['.jpeg', '.jpg', '.png'];
+    const allowedType = ['.jpeg', '.jpg', '.png', '.mp4', '.mp3'];
 
     if (!allowedType.includes(ext.toLowerCase())) return res.status(422).json({ msg: "Invalid image" });
 
-    if (size > 5000000) return res.status(422).json({ msg: "Image must be less than 5MB" });
+    if (size > 200000000) return res.status(422).json({ msg: "Image must be less than 200MB" });
 
     file.mv(`./public/images/${fileName}`, async (err) => {
         if (err) return res.status(500).json({ msg: err.message });
@@ -66,11 +66,11 @@ export const updateProduct = async (req, res) => {
         const size = file.data.length;
         const ext = path.extname(file.name);
         fileName = file.md5 + ext;
-        const allowedType = ['.jpeg', '.jpg', '.png'];
+        const allowedType = ['.jpeg', '.jpg', '.png', '.mp4', '.mp3'];
 
         if (!allowedType.includes(ext.toLowerCase())) return res.status(422).json({ msg: "Invalid image" });
 
-        if (size > 5000000) return res.status(422).json({ msg: "Image must be less than 5MB" });
+        if (size > 200000000) return res.status(422).json({ msg: "Image must be less than 200MB" });
 
         const filePath = `./public/images/${product.image}`;
         fs.unlinkSync(filePath);

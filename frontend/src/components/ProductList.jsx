@@ -62,6 +62,14 @@ const ProductList = () => {
                                     }}
                                     image={product.url}
                                 />
+
+                                {/* <video id="video" controls controlsList="nodownload" style={{ width: "auto" }}>
+                                    <source src={product.url} id="video" />
+                                </video> */}
+
+                                {/* <audio controls autoplay>
+                                    <source src={product.url} type="audio/ogg"></source>
+                                </audio> */}
                                 <CardContent>
                                     <Typography variant='body1' sx={{ fontWeight: 'bold' }}>
                                         {product.name}
